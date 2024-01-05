@@ -24,6 +24,8 @@ def main(r*, root='.'):
                     'label_0': 1,
                     'label_1': 0,
                     'num_example_per_prompt': len(image_paths),
+                    'model_0': 'stabilityai/stable-diffusion-?-?',
+                    'model_1': 'stabilityai/stable-diffusion-?-?',
                 }
                 rows.append(row)
         df = pd.DataFrame(rows)

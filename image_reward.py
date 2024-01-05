@@ -9,6 +9,7 @@ if __name__ == "__main__":
     for split in ("train", "validation", "test"):
         df = ds.data[split].to_pandas()
         rows = []
+        breakpoint()
         for prompt_id in df.prompt_id.unique():
             images = df[df.prompt_id == prompt_id]
             for im1, im2 in combinations(range(len(images)), 2):
@@ -30,6 +31,9 @@ if __name__ == "__main__":
                     'label_0': binary_rating,
                     'label_1': 1 - binary_rating,
                     'num_example_per_prompt': len(images),
+                    # TODO not sure which Stable Diffision model is used in DiffusionDB??
+                    'model_0': 'stabilityai/stable-diffusion-?-?',
+                    'model_1': 'stabilityai/stable-diffusion-?-?',
                 }
                 rows.append(row)
         df = pd.DataFrame(rows)
