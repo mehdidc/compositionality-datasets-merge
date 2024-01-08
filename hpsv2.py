@@ -23,14 +23,14 @@ def main(*, root='.'):
                 binary_rating = im1_rank < im2_rank
                 row = {
                     'caption': r["prompt"],
-                    'caption_source': '?',
+                    'caption_source': '?', #TODO missing caption source
                     'image_0_url': os.path.abspath(os.path.join(root, split, image_paths[im1])),
                     'image_1_url': os.path.abspath(os.path.join(root, split, image_paths[im2])),
                     'label_0': binary_rating,
                     'label_1': 1 - binary_rating,
                     'num_example_per_prompt': len(image_paths),
-                    'model_0': '?',
-                    'model_1': '?',
+                    'model_0': '?', #TODO missing model version
+                    'model_1': '?', #TODO missing model version
                 }
                 rows.append(row)
         df = pd.DataFrame(rows)

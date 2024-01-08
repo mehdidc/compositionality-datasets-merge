@@ -32,8 +32,8 @@ if __name__ == "__main__":
                     'label_1': 1 - binary_rating,
                     'num_example_per_prompt': len(images),
                     # TODO not sure which Stable Diffision model is used in DiffusionDB??
-                    'model_0': 'stabilityai/stable-diffusion-?-?',
-                    'model_1': 'stabilityai/stable-diffusion-?-?',
+                    'model_0': 'stabilityai/stable-diffusion-?-?', #TODO missing model version
+                    'model_1': 'stabilityai/stable-diffusion-?-?', #TODO missing model version
                 }
                 rows.append(row)
         df = pd.DataFrame(rows)
