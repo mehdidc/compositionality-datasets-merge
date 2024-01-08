@@ -9,7 +9,6 @@ if __name__ == "__main__":
     for split in ("train", "validation", "test"):
         df = ds.data[split].to_pandas()
         rows = []
-        breakpoint()
         for prompt_id in df.prompt_id.unique():
             images = df[df.prompt_id == prompt_id]
             for im1, im2 in combinations(range(len(images)), 2):
