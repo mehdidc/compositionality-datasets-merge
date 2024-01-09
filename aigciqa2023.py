@@ -10,8 +10,9 @@ if __name__ == "__main__":
     for prompt in prompts:
         images = df[df.prompt == prompt]
         for im1, im2 in combinations(range(len(images)), 2):
-            im1_path = (images.iloc[im1].name)
-            im2_path = (images.iloc[im2].name)
+            # print(im1, im2)
+            im1_path = str(images.iloc[im1].name)+'.png'
+            im2_path = str(images.iloc[im2].name)+'.png'
             # TODO: for now only taking image-text alignment scores, ignoring quality and authenticity scores
             # TODO: ignoring standard deviations, only taking means
             im1_rating = images.iloc[im1].correspondence_mos
@@ -30,8 +31,8 @@ if __name__ == "__main__":
                 'label_0': binary_rating,
                 'label_1': 1 - binary_rating,
                 'num_example_per_prompt': len(images),
-                'model_0': models[im1],
-                'model_1': models[im2],
+                'model_0': models[int(images.iloc[im1].name)],
+                'model_1': models[int(images.iloc[im2].name)],
             }
             rows.append(row)
     df = pd.DataFrame(rows)
