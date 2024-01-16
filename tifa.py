@@ -1,6 +1,7 @@
 from itertools import combinations
 import pandas as pd
 import json
+import os
 
 if __name__ == "__main__":
     # taken from here: https://github.com/Yushi-Hu/tifa/blob/main/human_annotations/human_annotations_with_scores.json
@@ -26,8 +27,8 @@ if __name__ == "__main__":
             row = {
                 'caption': prompt.strip('\r\n'),
                 'caption_source': images.iloc[0].id.split('_')[0],
-                'image_0_url': im1_path,
-                'image_1_url': im2_path,
+                'image_0_url': os.path.join('annotated_images', im1_path),
+                'image_1_url': os.path.join('annotated_images', im2_path),
                 'label_0': binary_rating,
                 'label_1': 1 - binary_rating,
                 'num_example_per_prompt': len(images),
@@ -36,4 +37,4 @@ if __name__ == "__main__":
             }
             rows.append(row)
     df = pd.DataFrame(rows)
-    df.to_csv(f"tifa.csv", index=False)
+    df.to_csv(f"csvs/tifa.csv", index=False)

@@ -1,6 +1,7 @@
 from itertools import combinations
 import pandas as pd
 import json
+import os
 
 if __name__ == "__main__":
     # taken from here: hhttps://drive.google.com/drive/folders/1Sam8_Hpm4uWKB_Ehk9C_JcGNpYH7jZD2
@@ -35,8 +36,8 @@ if __name__ == "__main__":
             row = {
                 'caption': curr_caption,
                 'caption_source': 'coco',
-                'image_0_url': im1_path,
-                'image_1_url': im2_path,
+                'image_0_url': os.path.join('val2014', im1_path),
+                'image_1_url': os.path.join('val2014', im2_path),
                 'label_0': binary_rating,
                 'label_1': 1 - binary_rating,
                 'num_example_per_prompt': len(images),
@@ -46,4 +47,4 @@ if __name__ == "__main__":
             }
             rows.append(row)
     df = pd.DataFrame(rows)
-    df.to_csv(f"eccv_caption.csv", index=False)
+    df.to_csv(f"csvs/eccv_caption.csv", index=False)

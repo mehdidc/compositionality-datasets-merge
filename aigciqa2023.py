@@ -1,5 +1,6 @@
 from itertools import combinations
 import pandas as pd
+import os
 
 if __name__ == "__main__":
     # taken from here: https://github.com/wangjiarui153/AIGCIQA2023/pull/4/files
@@ -26,8 +27,8 @@ if __name__ == "__main__":
             row = {
                 'caption': prompt,
                 'caption_source': 'PartiPrompts',
-                'image_0_url': im1_path,
-                'image_1_url': im2_path,
+                'image_0_url': os.path.join('allimg', im1_path),
+                'image_1_url': os.path.join('allimg', im2_path),
                 'label_0': binary_rating,
                 'label_1': 1 - binary_rating,
                 'num_example_per_prompt': len(images),
@@ -36,4 +37,4 @@ if __name__ == "__main__":
             }
             rows.append(row)
     df = pd.DataFrame(rows)
-    df.to_csv(f"aigciqa2023.csv", index=False)
+    df.to_csv(f"csvs/aigciqa2023.csv", index=False)
