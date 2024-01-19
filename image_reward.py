@@ -2,6 +2,7 @@ from itertools import combinations
 import pandas as pd
 from datasets import load_dataset
 
+
 if __name__ == "__main__":
     # referring to https://github.com/THUDM/ImageReward/issues/26
     ds = load_dataset("THUDM/ImageRewardDB", "8k")
@@ -31,9 +32,9 @@ if __name__ == "__main__":
                     'label_1': 1 - binary_rating,
                     'num_example_per_prompt': len(images),
                     # TODO not sure which Stable Diffision model is used in DiffusionDB??
-                    'model_0': 'stabilityai/stable-diffusion-?-?', #TODO missing model version
-                    'model_1': 'stabilityai/stable-diffusion-?-?', #TODO missing model version
+                    'model_0': 'stable-diffusion', #TODO missing model version
+                    'model_1': 'stable-diffusion', #TODO missing model version
                 }
                 rows.append(row)
         df = pd.DataFrame(rows)
-        df.to_csv(f"image_reward_{split}.csv", index=False)
+        df.to_csv(f"csvs/image_reward_{split}.csv", index=False)

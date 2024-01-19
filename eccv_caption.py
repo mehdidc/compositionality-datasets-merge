@@ -5,8 +5,8 @@ import os
 
 if __name__ == "__main__":
     # taken from here: hhttps://drive.google.com/drive/folders/1Sam8_Hpm4uWKB_Ehk9C_JcGNpYH7jZD2
-    df = pd.read_csv('/mnt/qb/work/bethge/bkr405/data/compositionality-datasets/mturk_parsed.csv')
-    with open('/mnt/qb/work/bethge/bkr405/data/compositionality-datasets/captions_val2014.json') as f:
+    df = pd.read_csv('data/eccv_caption/mturk_parsed.csv')
+    with open('data/eccv_caption/captions_val2014.json') as f:
         coco_captions_id_mapping = json.load(f)
 
     coco_id2cap = {}
@@ -36,8 +36,8 @@ if __name__ == "__main__":
             row = {
                 'caption': curr_caption,
                 'caption_source': 'coco',
-                'image_0_url': os.path.join('val2014', im1_path),
-                'image_1_url': os.path.join('val2014', im2_path),
+                'image_0_url': os.path.join('data', 'eccv_caption', 'val2014', im1_path),
+                'image_1_url': os.path.join('data', 'eccv_caption', 'val2014', im2_path),
                 'label_0': binary_rating,
                 'label_1': 1 - binary_rating,
                 'num_example_per_prompt': len(images),

@@ -4,8 +4,8 @@ import os
 
 if __name__ == "__main__":
     # taken from here: https://github.com/wangjiarui153/AIGCIQA2023/pull/4/files
-    df = pd.read_csv('/mnt/qb/work/bethge/bkr405/data/compositionality-datasets/AIGCIQA2023.csv')
-    models = pd.read_csv('/mnt/qb/work/bethge/bkr405/data/compositionality-datasets/pic-index.csv', header=None).iloc[:, 0].to_list()
+    df = pd.read_csv("data/aigciqa2023/AIGCIQA2023.csv")
+    models = pd.read_excel("data/aigciqa2023/pic-index.xlsx", header=None).iloc[:, 0].to_list()
     rows = []
     prompts = df.prompt.unique()
     for prompt in prompts:
@@ -23,16 +23,20 @@ if __name__ == "__main__":
                 binary_rating = 1
             else:
                 binary_rating = 0
+            im1_path = os.path.join('data', 'aigciqa2023', 'allimg', im1_path)
+            im2_path = os.path.join('data', 'aigciqa2023', 'allimg', im2_path)
+            assert os.path.exists(im1_path)
+            assert os.path.exists(im2_path)
             row = {
                 'caption': prompt,
                 'caption_source': 'PartiPrompts',
-                'image_0_url': os.path.join('allimg', im1_path),
-                'image_1_url': os.path.join('allimg', im2_path),
+                'image_0_url': im1_path,
+                'image_1_url': im2_path,
                 'label_0': binary_rating,
                 'label_1': 1 - binary_rating,
                 'num_example_per_prompt': len(images),
-                'model_0': models[int(images.iloc[im1].name)],
-                'model_1': models[int(images.iloc[im2].name)],
+                'model_0': models[int(images.iloc[im1].name)].replace("stable_diffusion", "stable-diffusion"),
+                'model_1': models[int(images.iloc[im2].name)].replace("stable_diffusion", "stable-diffusion"),
             }
             rows.append(row)
     df = pd.DataFrame(rows)

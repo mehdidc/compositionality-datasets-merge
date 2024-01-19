@@ -5,7 +5,7 @@ import os
 
 if __name__ == "__main__":
     # taken from here: https://github.com/Yushi-Hu/tifa/blob/main/human_annotations/human_annotations_with_scores.json
-    with open('/mnt/qb/work/bethge/bkr405/data/compositionality-datasets/tifa_human_annotations.json', 'r') as f:
+    with open('data/tifa/human_annotations_with_scores.json', 'r') as f:
         js = json.load(f)
     j = [{**v, 'id': k} for k,v in js.items()]
     df = pd.json_normalize(j)
@@ -24,11 +24,15 @@ if __name__ == "__main__":
                 binary_rating = 1
             else:
                 binary_rating = 0
+            im1_path = os.path.join('data', 'tifa','annotated_images', im1_path)
+            im2_path = os.path.join('data', 'tifa','annotated_images', im2_path)
+            assert os.path.exists(im1_path)
+            assert os.path.exists(im2_path)
             row = {
                 'caption': prompt.strip('\r\n'),
                 'caption_source': images.iloc[0].id.split('_')[0],
-                'image_0_url': os.path.join('annotated_images', im1_path),
-                'image_1_url': os.path.join('annotated_images', im2_path),
+                'image_0_url': im1_path,
+                'image_1_url': im2_path,
                 'label_0': binary_rating,
                 'label_1': 1 - binary_rating,
                 'num_example_per_prompt': len(images),
