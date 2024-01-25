@@ -35,8 +35,8 @@ if __name__ == "__main__":
                 'label_0': binary_rating,
                 'label_1': 1 - binary_rating,
                 'num_example_per_prompt': len(images),
-                'model_0': models[int(images.iloc[im1].name)].replace("stable_diffusion", "stable-diffusion"),
-                'model_1': models[int(images.iloc[im2].name)].replace("stable_diffusion", "stable-diffusion"),
+                'model_0': models[int(images.iloc[im1].name)],
+                'model_1': models[int(images.iloc[im2].name)],
             }
             rows.append(row)
     df = pd.DataFrame(rows)

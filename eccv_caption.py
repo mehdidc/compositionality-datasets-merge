@@ -42,8 +42,8 @@ if __name__ == "__main__":
                 'label_1': 1 - binary_rating,
                 'num_example_per_prompt': len(images),
                 # TODO: better naming convention for natural images?
-                'model_0': 'natural',
-                'model_1': 'natural',
+                'model_0': 'coco', # real images from COCO dataset
+                'model_1': 'coco', # real images from COCO dataset
             }
             rows.append(row)
     df = pd.DataFrame(rows)
