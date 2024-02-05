@@ -16,4 +16,4 @@ The preference ranking data for AIGCIQA2023 can be accessed here: `csvs/aigciqa2
 The preference ranking for ECCV-Caption can be accessed here: `eccv_caption.csv`. To setup the images, download the coco2014 val split from [here](http://images.cocodataset.org/zips/val2014.zip). Unzip and then store the folder `val2014` in the same directory as the csv file. 
 
 #### D3PO
-Download the images using `wget https://huggingface.co/datasets/yangkaiSIGS/d3po_datasets/resolve/main/text2img_evaluation.7z`. Extract the images and ensure that the folder `img` is inside the same directory as the csv file.
+Download the images from [here](d3po_text2image_evaluation.zip). Extract the images and ensure that the folder `img` is inside the same directory as the csv file.
